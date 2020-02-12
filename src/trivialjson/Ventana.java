@@ -46,7 +46,7 @@ public class Ventana extends JFrame implements ActionListener {
     JTextField nombreJugador;
     JButton iniciar, res1, res2, res3, res4;
     JProgressBar barra;
-    JPanel panelSuperior, panelCentral, panelInferior, panelCentralUno, panelCentralDos;
+    JPanel panelSuperior, panelCentral, panelInferior, panelCentralUno, panelCentralDos, panelCentralTres;
     CardLayout cardLayout;
     FondoPanel fondoPanel;
 
@@ -60,7 +60,6 @@ public class Ventana extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        //this.setContentPane(fondoPanel);
 
     }
 
@@ -78,6 +77,7 @@ public class Ventana extends JFrame implements ActionListener {
         panelCentral = new JPanel();
         panelCentralUno = new JPanel();
         panelCentralDos = new JPanel();
+        panelCentralTres = new JPanel();
         panelInferior = new JPanel();
         cardLayout = new CardLayout();
 
@@ -114,6 +114,7 @@ public class Ventana extends JFrame implements ActionListener {
         panelCentral.setLayout(cardLayout);
         panelCentral.add(panelCentralUno, "panelUno");
         panelCentral.add(panelCentralDos, "panelDos");
+        panelCentral.add(panelCentralTres, "panelTres");
 
         configurarCentralUno();
         cardLayout.show(panelCentral, "panelUno");
@@ -122,7 +123,8 @@ public class Ventana extends JFrame implements ActionListener {
 
     private JPanel configurarCentralUno() {
         panelCentralUno.setLayout(new BorderLayout());
-        panelCentralUno.add(pCorrectas, BorderLayout.CENTER);
+        panelCentralUno.add(nombreJugador, BorderLayout.NORTH);
+        panelCentralUno.add(fondoPanel, BorderLayout.CENTER);
         panelCentralUno.add(iniciar, BorderLayout.SOUTH);
         return panelCentralUno;
     }
@@ -136,6 +138,15 @@ public class Ventana extends JFrame implements ActionListener {
         panelCentralDos.add(res4);
 
         return panelCentralDos;
+    }
+    private JPanel configurarCentralTres() {
+        panelCentralTres.setLayout(new GridLayout(3, 1));
+        panelCentralTres.add(pCorrectas);
+        panelCentralTres.add(pFalladas);
+        panelCentralTres.add(totalPreguntas);
+        
+
+        return panelCentralTres;
     }
 
     private JPanel configurarInferior() {
